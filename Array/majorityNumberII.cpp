@@ -18,7 +18,7 @@ public:
     			m_dict[nums[i]]++;
     		}
     		// what if nums[i] is not in m_dict
-    		else if (m_dict.size() == 3) {
+    		else if (m_dict.size() == 2) {
     			vector<unordered_map<int, int>::iterator> m_del;
     			for (auto it = m_dict.begin(); it != m_dict.end(); it++) {
     				if (--(it->second) == 0)
@@ -34,8 +34,13 @@ public:
     	} 
     	
     	for (auto it = m_dict.begin(); it != m_dict.end(); it++) {
-    	    if(m_count < it->second) {
-    	        m_count = it->second;
+    	    int count = 0;
+    	    for (int i = 0; i < nums.size(); i++) {
+    	        if (nums[i] == it->first) 
+    	            count++;
+    	    } 
+    	    if(m_count < count) { 
+    	        m_count = count;
     	        m_majority = it->first;
     	    }
     	}
