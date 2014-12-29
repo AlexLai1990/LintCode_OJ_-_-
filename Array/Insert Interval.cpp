@@ -47,10 +47,12 @@ public:
     	if (right_bound < size - 1 && intervals[right_bound + 1].start <= newInterval.end)
     		newInterval.end = max(intervals[++right_bound].end, newInterval.end);
     
-    	if (right_bound + 1 >= left_bound) {
-    		intervals.insert(intervals.begin() + left_bound, newInterval);
-    		intervals.erase(intervals.begin() + left_bound + 1, intervals.begin() + right_bound + 2);
-    	} 
-    	return intervals; 
+    	vector<Interval> res;
+        for(int i=0;i<left_bound;i++)
+            res.push_back(intervals[i]);
+        res.push_back(newInterval);
+        for(int i=right_bound + 1;i<intervals.size(); i++ )
+            res.push_back(intervals[i]);
+        return res;
     }
 };
