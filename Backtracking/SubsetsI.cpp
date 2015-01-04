@@ -13,6 +13,7 @@ public:
         if (nums.size() < 1)
             return m_res;
         vector<int> path;
+        sort(nums.begin(), nums.end());
         subsetsHelper(nums, m_res, path, 0);
         return m_res;
     }
